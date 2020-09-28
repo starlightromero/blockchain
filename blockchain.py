@@ -17,11 +17,12 @@ class Blockchain:
 
     def __init__(self, hosting_node_id):
         """Initialize and load blockchain."""
-        GENESIS_BLOCK = Block(0, "", [], 100, 0)
-        self.chain = [GENESIS_BLOCK]
+        genesis_block = Block(0, "", [], 100, 0)
+        self.chain = [genesis_block]
         self.__open_transactions = []
         self.load_data()
         self.hosting_node = hosting_node_id
+        self.__peer_nodes = set()
 
     @property
     def chain(self):
@@ -63,7 +64,7 @@ class Blockchain:
                     )
                     updated_blockchain.append(updated_block)
                 self.chain = updated_blockchain
-                open_transactions = json.loads(file_content[1])
+                open_transactions = json.loads(file_content[1][:-1])
                 updated_transactions = []
                 for tx in open_transactions:
                     updated_transaction = Transaction(
@@ -74,6 +75,8 @@ class Blockchain:
                     )
                     updated_transactions.append(updated_transaction)
                 self.__open_transactions = updated_transactions
+                peer_nodes = json.load(file_content[2])
+                self.__peer_nodes = set(peer_nodes)
         except (IOError, IndexError):
             pass
         finally:
@@ -100,6 +103,7 @@ class Blockchain:
                 f.write("\n")
                 savable_tx = [tx.__dict__ for tx in self.__open_transactions]
                 f.write(json.dumps(savable_tx))
+                f.write(json.dumps(list(self.__peer_nodes)))
         except IOError:
             print("{:-^80}".format("Saving failed").upper())
 
@@ -195,6 +199,24 @@ class Blockchain:
             len(self.__chain), hashed_block, copied_transactions, proof
         )
         self.__chain.append(block)
-        self.open_transactions = []
+        self.__open_transactions = []
         self.save_data()
         return block
+
+    def add_peer_node(self, node):
+        """Add a new node to the peer node set.
+
+        Arguments:
+            :node: The node URL which should be added.
+        """
+        self.__peer_nodes.add(node)
+        self.save_data()
+
+    def remove_peer_node(self, node):
+        """Remove a node from the peer node set.
+
+        Arguments:
+            :node: The node URL which should be removed.
+        """
+        self.__peer_nodes.discard(node)
+        self.save_data()
