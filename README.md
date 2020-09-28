@@ -7,12 +7,12 @@
 
 Clone the repository
 ```zsh
-git clone git@github.com:starlightromero/woodys-lumber-yard.git
+git clone git@github.com:starlightromero/blockchain.git
 ````
 
 Change into the new directory
 ```zsh
-cd woodys-lumber-yard
+cd blockchain
 ```
 
 Create a folder called env that will hold all installed packages
@@ -37,7 +37,5 @@ source env/bin/activate
 
 Run the app
 ```zsh
-flask run
+python3 node.py
 ```
-
-**Navigate to localhost:5000**
