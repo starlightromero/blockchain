@@ -201,8 +201,6 @@ class Blockchain:
                 Signature
 
         """
-        if self.public_key is None:
-            return False
         transaction = Transaction(sender, receiver, signature, amount)
         if Verification.verify_transaction(transaction, self.get_balance):
             self.__open_transactions.append(transaction)
@@ -286,6 +284,19 @@ class Blockchain:
             block["timestamp"],
         )
         self.__chain.append(converted_block)
+        stored_transactions = self.__open_transactions[:]
+        for itx in block["transactions"]:
+            for open_tx in stored_transactions:
+                if (
+                    open_tx.sender == itx["sender"]
+                    and open_tx.receiver == itx["receiver"]
+                    and open_tx.amount == itx["amount"]
+                    and open_tx.signature == itx["signature"]
+                ):
+                    try:
+                        self.__open_transactions.remove(open_tx)
+                    except ValueError:
+                        print("Item was already removed.")
         self.save_data()
         return True
 
