@@ -9,10 +9,11 @@ import binascii
 class Wallet:
     """Access keys for Wallet of blockchain user."""
 
-    def __init__(self):
+    def __init__(self, node_id):
         """Initialize Wallet."""
         self.private_key = None
         self.public_key = None
+        self.node_id = node_id
 
     def create_keys(self):
         """Create a new private and public key pair."""
@@ -24,7 +25,7 @@ class Wallet:
         """Save private and public keys to a file."""
         if self.private_key is not None and self.public_key is not None:
             try:
-                with open("wallet.txt", mode="w") as f:
+                with open(f"wallet-{self.node_id}.txt", mode="w") as f:
                     f.write(self.private_key)
                     f.write("\n")
                     f.write(self.public_key)
@@ -36,7 +37,7 @@ class Wallet:
     def load_keys(self):
         """Load private and public keys from a file."""
         try:
-            with open("wallet.txt", mode="r") as f:
+            with open(f"wallet-{self.node_id}.txt", mode="r") as f:
                 keys = f.readlines()
                 private_key = keys[0][:-1]
                 public_key = keys[1]

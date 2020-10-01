@@ -13,16 +13,24 @@ MINING_REWARD = 10
 
 
 class Blockchain:
-    """The blockchain."""
+    """The Blockchain class manages the chain of blocks as well as open transactions and the node on which it's running.
 
-    def __init__(self, hosting_node_id):
+    Attributes:
+    ---------
+        :chain: The list of blocks
+        :open_transactions (private): The list of open transactions
+        :public_key: The connected node (which runs the blockchain).
+    """
+
+    def __init__(self, public_key, node_id):
         """Initialize and load blockchain."""
         genesis_block = Block(0, "", [], 100, 0)
         self.chain = [genesis_block]
         self.__open_transactions = []
-        self.load_data()
-        self.hosting_node = hosting_node_id
+        self.public_key = public_key
         self.__peer_nodes = set()
+        self.node_id = node_id
+        self.load_data()
 
     @property
     def chain(self):
@@ -41,7 +49,7 @@ class Blockchain:
     def load_data(self):
         """Load blockchain from txt file."""
         try:
-            with open("blockchain.txt", mode="r") as f:
+            with open(f"blockchain-{self.node_id}.txt", mode="r") as f:
                 file_content = f.readlines()
                 blockchain = json.loads(file_content[0][:-1])
                 updated_blockchain = []
@@ -85,7 +93,7 @@ class Blockchain:
     def save_data(self):
         """Save blockchain to txt file."""
         try:
-            with open("blockchain.txt", mode="w") as f:
+            with open(f"blockchain-{self.node_id}.txt", mode="w") as f:
                 saveable_chain = [
                     block.__dict__
                     for block in [
@@ -120,9 +128,9 @@ class Blockchain:
 
     def get_balance(self):
         """Return current balance of the sender node."""
-        if self.hosting_node is None:
+        if self.public_key is None:
             return None
-        participant = self.hosting_node
+        participant = self.public_key
         tx_sender = [
             [
                 tx.amount
@@ -171,7 +179,7 @@ class Blockchain:
 
     def add_transaction(self, receiver, sender, signature, amount=1.0):
         """Append a new transaction to the list of open transactions."""
-        if self.hosting_node is None:
+        if self.public_key is None:
             return False
         transaction = Transaction(sender, receiver, signature, amount)
         if Verification.verify_transaction(transaction, self.get_balance):
@@ -182,13 +190,13 @@ class Blockchain:
 
     def mine_block(self):
         """Append list of open transactions to the blockchain."""
-        if self.hosting_node is None:
+        if self.public_key is None:
             return None
         last_block = self.__chain[-1]
         hashed_block = hash_block(last_block)
         proof = self.proof_of_work()
         reward_transaction = Transaction(
-            "MINING", self.hosting_node, "", MINING_REWARD
+            "MINING", self.public_key, "", MINING_REWARD
         )
         copied_transactions = self.__open_transactions[:]
         for tx in copied_transactions:
@@ -207,7 +215,10 @@ class Blockchain:
         """Add a new node to the peer node set.
 
         Arguments:
-            :node: The node URL which should be added.
+        ---------
+            node : str
+                The node URL which should be added.
+
         """
         self.__peer_nodes.add(node)
         self.save_data()
@@ -216,7 +227,14 @@ class Blockchain:
         """Remove a node from the peer node set.
 
         Arguments:
-            :node: The node URL which should be removed.
+        ---------
+            node : str
+                The node URL which should be removed.
+
         """
         self.__peer_nodes.discard(node)
         self.save_data()
+
+    def get_peer_nodes(self):
+        """Return a list of all connected peer nodes."""
+        return list(self.__peer_nodes)
