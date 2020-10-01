@@ -30,9 +30,8 @@ def create_keys():
             "funds": blockchain.get_balance(),
         }
         return jsonify(response), 201
-    else:
-        response = {"message": "Saving the keys failed."}
-        return jsonify(response), 500
+    response = {"message": "Saving the keys failed."}
+    return jsonify(response), 500
 
 
 @app.route("/wallet", methods=["GET"])
@@ -183,12 +182,11 @@ def mine():
             "funds": blockchain.get_balance(),
         }
         return jsonify(response), 201
-    else:
-        response = {
-            "message": "Mining a block failed.",
-            "wallet_set_up": wallet.public_key is not None,
-        }
-        return jsonify(response), 500
+    response = {
+        "message": "Mining a block failed.",
+        "wallet_set_up": wallet.public_key is not None,
+    }
+    return jsonify(response), 500
 
 
 @app.route("/resolve_conflicts", methods=["POST"])
