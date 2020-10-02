@@ -115,6 +115,9 @@ body {
       border-radius: 5px;
       font-size: 16px;
       padding: 10.5px 30px; }
+      body #app main button:hover, body #app main button:focus {
+        background-color: #F5F6F8;
+        color: #087CB8; }
     body #app main nav {
       width: 50%; }
       body #app main nav ul {
