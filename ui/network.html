@@ -28,28 +28,19 @@
     </header>
     <main>
       <form @submit.prevent="onAddNode">
-        <div class="form-group">
-          <label for="node-url">Node URL</label>
+        <label>
+          Node URL
           <input v-model="newNodeUrl" type="text" class="form-control" id="node-url" placeholder="localhost:5001">
-        </div>
+        </label>
         <button :disabled="newNodeUrl.trim() === ''" type="submit" class="btn btn-primary">Add</button>
       </form>
+      <button class="btn btn-primary" @click="onLoadNodes">Load Peer Nodes</button>
+      <ul class="list-group">
+        <button v-for="node in nodes" style="cursor: pointer;" class="list-group-item list-group-item-action" @click="onRemoveNode(node)">
+          {{ node }} (click to delete)
+        </button>
+      </ul>
     </main>
-    <hr>
-    <div class="row my-3">
-      <div class="col">
-        <button class="btn btn-primary" @click="onLoadNodes">Load Peer Nodes</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <ul class="list-group">
-          <button v-for="node in nodes" style="cursor: pointer;" class="list-group-item list-group-item-action" @click="onRemoveNode(node)">
-            {{ node }} (click to delete)
-          </button>
-        </ul>
-      </div>
-    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
