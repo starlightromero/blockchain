@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 
 from wallet import Wallet
@@ -10,12 +10,12 @@ CORS(app)
 
 @app.route("/", methods=["GET"])
 def get_node_ui():
-    return send_from_directory("ui", "node.html")
+    return render_template("node.html")
 
 
 @app.route("/network", methods=["GET"])
 def get_network_ui():
-    return send_from_directory("ui", "network.html")
+    return render_template("network.html")
 
 
 @app.route("/wallet", methods=["POST"])
