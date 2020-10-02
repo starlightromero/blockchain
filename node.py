@@ -266,4 +266,4 @@ if __name__ == "__main__":
     port = args.port
     wallet = Wallet(port)
     blockchain = Blockchain(wallet.public_key, port)
-    app.run(port=port)
+    app.run(host="0.0.0.0", port=port)
