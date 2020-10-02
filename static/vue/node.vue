@@ -1,5 +1,6 @@
 new Vue({
   el: '#app',
+  delimiters: ['[[', ']]'],
   data: {
     blockchain: [],
     openTransactions: [],

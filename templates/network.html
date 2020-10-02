@@ -1,50 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block head %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Blockchain Management</title>
-  <link rel="stylesheet" href="/static/css/main.css">
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js" defer></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
-  <script type="text/javascript" src="/static/vue/network.vue" defer></script>
-</head>
+<script type="text/javascript" src="/static/vue/network.vue" defer></script>
 
-<body>
-  <div id="app">
-    <header>
-      <h1>MS Coin</h1>
-      <div v-if="error" class="alert alert-danger" role="alert">
-        {{ error }}
-      </div>
-      <div v-if="success" class="alert alert-success" role="alert">
-        {{ success }}
-      </div>
-      <nav>
-        <ul>
-          <li><a href="/">Wallet</a></li>
-          <li><a class="active" href="/network">Network</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <form @submit.prevent="onAddNode">
-        <label>
-          Node URL
-          <input v-model="newNodeUrl" type="text" class="form-control" id="node-url" placeholder="localhost:5001">
-        </label>
-        <button :disabled="newNodeUrl.trim() === ''" type="submit" class="btn btn-primary">Add</button>
-      </form>
-      <button class="btn btn-primary" @click="onLoadNodes">Load Peer Nodes</button>
-      <ul class="list-group">
-        <button v-for="node in nodes" style="cursor: pointer;" class="list-group-item list-group-item-action" @click="onRemoveNode(node)">
-          {{ node }} (click to delete)
-        </button>
-      </ul>
-    </main>
+{% endblock %}
+{% block content %}
+
+<header>
+  <h1>MS Coin</h1>
+  <div v-if="error" class="alert alert-danger" role="alert">
+    [[ error ]]
   </div>
-</body>
+  <div v-if="success" class="alert alert-success" role="alert">
+    [[ success ]]
+  </div>
+  <nav>
+    <ul>
+      <li><a href="/">Wallet</a></li>
+      <li><a class="active" href="/network">Network</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <form @submit.prevent="onAddNode">
+    <label>
+      Node URL
+      <input v-model="newNodeUrl" type="text" class="form-control" id="node-url" placeholder="localhost:5001">
+    </label>
+    <button :disabled="newNodeUrl.trim() === ''" type="submit" class="btn btn-primary">Add</button>
+  </form>
+  <button class="btn btn-primary" @click="onLoadNodes">Load Peer Nodes</button>
+  <ul class="list-group">
+    <button v-for="node in nodes" style="cursor: pointer;" class="list-group-item list-group-item-action" @click="onRemoveNode(node)">
+      [[ node ]] (click to delete)
+    </button>
+  </ul>
+</main>
 
-</html>
+{% endblock %}
