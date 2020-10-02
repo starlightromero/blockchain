@@ -1,6 +1,6 @@
 # Blockchain
 
-### A terminal-based Blockchain in the making with python.
+### A Blockchain in the making with python.
 
 
 ## How to Run
@@ -39,3 +39,5 @@ Run the app
 ```zsh
 python3 node.py
 ```
+
+**Navigate to localhost:5000**
