@@ -1,6 +1,43 @@
 @import './colors.sass'
 @import './fonts.sass'
 @import './lds.sass'
+@import './mixins.sass'
 
 *
   font-family: "OpenSans"
+
+body
+  background: $white
+  margin: 0
+  padding: 0
+
+  #app
+
+    header
+      +flexbox(column)
+      background-color: $primary-color
+
+      h1
+        color: $white
+
+      nav
+        width: 50%
+
+        ul
+          align-items: center
+          display: flex
+          flex-direction: row
+          height: 3rem
+          padding: 0
+          justify-content: space-around
+
+          li
+            display: flex
+
+            a
+              color: $white
+              text-decoration: none
+
+
+              &:hover
+                color: $grey

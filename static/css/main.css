@@ -37,4 +37,33 @@
 * {
   font-family: "OpenSans"; }
 
+body {
+  background: #F5F6F8;
+  margin: 0;
+  padding: 0; }
+  body #app header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #087CB8; }
+    body #app header h1 {
+      color: #F5F6F8; }
+    body #app header nav {
+      width: 50%; }
+      body #app header nav ul {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        height: 3rem;
+        padding: 0;
+        justify-content: space-around; }
+        body #app header nav ul li {
+          display: flex; }
+          body #app header nav ul li a {
+            color: #F5F6F8;
+            text-decoration: none; }
+            body #app header nav ul li a:hover {
+              color: #87898C; }
+
 /*# sourceMappingURL=main.css.map */
