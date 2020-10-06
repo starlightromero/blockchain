@@ -5,8 +5,8 @@ from time import time
 class Block:
     """A Block of Blockchain.
 
-    Attributes:
-    ---------
+    Attributes
+    ----------
         index : str
             The index of this block.
         previous_hash : json
