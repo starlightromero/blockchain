@@ -1,6 +1,6 @@
-# Blockchain
+# MSCoin
 
-### A Blockchain in the making with python.
+### A Blockchain in the making with python, vue, and sass.
 
 
 ## How to Run
