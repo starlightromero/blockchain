@@ -4,7 +4,18 @@ from wallet import Wallet
 
 
 class Verification:
-    """A helper class to verify blockchain."""
+    """A helper class to verify blockchain.
+
+    Arguments
+    ---------
+        transactions
+            The block transactions for the proof.
+        last_hash
+            The previous block's hash to be stored in the current block.
+        proof
+            The proof number.
+
+    """
 
     @staticmethod
     def valid_proof(transactions, last_hash, proof):
