@@ -47,6 +47,14 @@ body
       +flexbox(column)
       padding: 2rem
 
+      .alert
+        background-color: $primary-color
+        width: 80%
+        border-radius: 5px
+        color: $white
+        padding: 1rem
+        word-wrap: break-word
+
       .wallet
         +flexbox(row)
         justify-content: space-between
@@ -89,6 +97,9 @@ body
 
       nav
         width: 50%
+        border-bottom: 1px solid $primary-color
+        margin-bottom: 1rem
+        margin-top: 3rem
 
         ul
           align-items: center
@@ -108,3 +119,13 @@ body
 
               &:hover
                 color: $grey
+
+      .chain-actions
+        +flexbox(row)
+
+      .blocks
+
+        .block
+          border: 1px solid $primary-color
+          margin: 1rem
+          padding: 1rem

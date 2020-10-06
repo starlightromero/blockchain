@@ -72,6 +72,13 @@ body {
     justify-content: center;
     align-items: center;
     padding: 2rem; }
+    body #app main .alert {
+      background-color: #087CB8;
+      width: 80%;
+      border-radius: 5px;
+      color: #F5F6F8;
+      padding: 1rem;
+      word-wrap: break-word; }
     body #app main .wallet {
       display: flex;
       flex-direction: row;
@@ -119,7 +126,10 @@ body {
         background-color: #F5F6F8;
         color: #087CB8; }
     body #app main nav {
-      width: 50%; }
+      width: 50%;
+      border-bottom: 1px solid #087CB8;
+      margin-bottom: 1rem;
+      margin-top: 3rem; }
       body #app main nav ul {
         align-items: center;
         display: flex;
@@ -134,5 +144,14 @@ body {
             text-decoration: none; }
             body #app main nav ul li a:hover {
               color: #87898C; }
+    body #app main .chain-actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+    body #app main .blocks .block {
+      border: 1px solid #087CB8;
+      margin: 1rem;
+      padding: 1rem; }
 
 /*# sourceMappingURL=main.css.map */
