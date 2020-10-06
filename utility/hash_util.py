@@ -3,7 +3,7 @@ import hashlib
 import json
 
 
-def has_string_256(string):
+def hash_string_256(string):
     """Return a 64 character hex string.
 
     Arguments:
