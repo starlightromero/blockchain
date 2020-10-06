@@ -21,15 +21,13 @@ class Block:
     """
 
     def __init__(
-        self, index, previous_hash, transactions, proof, timestamp=time()
+        self, index, previous_hash, transactions, proof, time=time()
     ):
-        """Initialize Block."""
         self.index = index
         self.previous_hash = previous_hash
+        self.timestamp = time
         self.transactions = transactions
         self.proof = proof
-        self.timestamp = timestamp
 
     def __repr__(self):
-        """Return a dict of Block."""
         return str(self.__dict__)
