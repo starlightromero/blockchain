@@ -213,7 +213,7 @@ class Blockchain:
             self.save_data()
             if not is_receiving:
                 for node in self.__peer_nodes:
-                    url = f"http://{node}/broadcast-transaction"
+                    url = f"http://{node}/broadcast_transaction"
                     try:
                         response = requests.post(
                             url,
