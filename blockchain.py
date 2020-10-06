@@ -221,6 +221,7 @@ class Blockchain:
                             json={
                                 "sender": sender,
                                 "receiver": receiver,
+                                "amount": amount,
                                 "signature": signature,
                             },
                         )
