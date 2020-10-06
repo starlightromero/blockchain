@@ -26,9 +26,9 @@ class Wallet:
         if self.private_key is not None and self.public_key is not None:
             try:
                 with open(f"wallet-{self.node_id}.txt", mode="w") as f:
-                    f.write(self.private_key)
-                    f.write("\n")
                     f.write(self.public_key)
+                    f.write("\n")
+                    f.write(self.private_key)
                     return True
             except (IOError, IndexError):
                 print("{:-^80}".format("Saving wallet failed.").upper())
@@ -39,10 +39,10 @@ class Wallet:
         try:
             with open(f"wallet-{self.node_id}.txt", mode="r") as f:
                 keys = f.readlines()
-                private_key = keys[1]
                 public_key = keys[0][:-1]
-                self.private_key = private_key
+                private_key = keys[1]
                 self.public_key = public_key
+                self.private_key = private_key
             return True
         except (IOError, IndexError):
             print("{:-^80}".format("Loading wallet failed.").upper())
