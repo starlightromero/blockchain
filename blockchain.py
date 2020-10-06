@@ -37,6 +37,10 @@ class Blockchain:
         self.resolve_conflicts = False
         self.load_data()
 
+    def __repr__(self):
+        """Return node_id for blockchain."""
+        return f"Blockchain('{self.node_id}')"
+
     @property
     def chain(self):
         """Chain getter."""
@@ -77,7 +81,9 @@ class Blockchain:
                     )
                     updated_blockchain.append(updated_block)
                 self.chain = updated_blockchain
+                print("{:-^80}".format("Before Load").upper())
                 open_transactions = json.loads(file_content[1][:-1])
+                print("{:-^80}".format("After Load").upper())
                 updated_transactions = []
                 for tx in open_transactions:
                     updated_transaction = Transaction(
@@ -309,7 +315,7 @@ class Blockchain:
         for node in self.__peer_nodes:
             url = f"http://{node}/chain"
             try:
-                response = response.get(url)
+                response = requests.get(url)
                 node_chain = response.json()
                 node_chain = [
                     Block(
