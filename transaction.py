@@ -3,7 +3,20 @@ from collections import OrderedDict
 
 
 class Transaction:
-    """A blockchain transaction."""
+    """A blockchain transaction.
+
+    Arguements
+    ---------
+        sender
+            The sender of the coins.
+        receiver
+            The receiver of the coins.
+        signature
+            The signature of the transaction.
+        amount
+            The amount of coins sent.
+
+    """
 
     def __init__(self, sender, receiver, signature, amount):
         """Initialize Transaction."""
