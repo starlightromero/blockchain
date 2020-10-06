@@ -81,9 +81,7 @@ class Blockchain:
                     )
                     updated_blockchain.append(updated_block)
                 self.chain = updated_blockchain
-                print("{:-^80}".format("Before Load").upper())
                 open_transactions = json.loads(file_content[1][:-1])
-                print("{:-^80}".format("After Load").upper())
                 updated_transactions = []
                 for tx in open_transactions:
                     updated_transaction = Transaction(
@@ -200,7 +198,7 @@ class Blockchain:
         Arguments:
         ---------
             receiver : str
-                The recipient of the coins.
+                The receiver of the coins.
             sender : str
                 The sender of the coins.
             amount : str
