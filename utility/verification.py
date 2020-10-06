@@ -1,5 +1,5 @@
 """Import hashing methods for verification."""
-from utility.hash_util import has_string_256, hash_block
+from utility.hash_util import hash_string_256, hash_block
 from wallet import Wallet
 
 
