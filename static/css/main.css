@@ -149,22 +149,32 @@ body {
       flex-direction: row;
       justify-content: center;
       align-items: center; }
-    body #app main .blocks .block {
+    body #app main .blocks {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      border: 1px solid #087CB8;
-      margin: 1rem;
-      padding: 1rem; }
-    body #app main .blocks .chain, body #app main .blocks .tx {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      align-items: flex-start;
       width: 100%; }
-      body #app main .blocks .chain button, body #app main .blocks .tx button {
-        align-self: center; }
+      body #app main .blocks .block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #087CB8;
+        margin: 1rem;
+        padding: 1rem;
+        width: 100%; }
+      body #app main .blocks .chain, body #app main .blocks .tx {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-items: flex-start;
+        width: 100%; }
+        body #app main .blocks .chain button, body #app main .blocks .tx button {
+          align-self: center; }
+        body #app main .blocks .chain .sender, body #app main .blocks .chain .receiver, body #app main .blocks .tx .sender, body #app main .blocks .tx .receiver {
+          width: 100%;
+          word-wrap: break-word; }
 
 /*# sourceMappingURL=main.css.map */

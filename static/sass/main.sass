@@ -124,12 +124,15 @@ body
         +flexbox(row)
 
       .blocks
+        +flexbox(column)
+        width: 100%
 
         .block
           +flexbox(column)
           border: 1px solid $primary-color
           margin: 1rem
           padding: 1rem
+          width: 100%
 
         .chain, .tx
           +flexbox(column)
@@ -138,3 +141,7 @@ body
 
           button
             align-self: center
+
+          .sender, .receiver
+            width: 100%
+            word-wrap: break-word
