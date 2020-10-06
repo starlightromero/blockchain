@@ -28,4 +28,6 @@ def hash_block(block):
     hashable_block["transactions"] = [
         tx.to_ordered_dict() for tx in hashable_block["transactions"]
     ]
-    return has_string_256(json.dumps(hashable_block, sort_keys=True).encode())
+    return hash_string_256(
+        json.dumps(hashable_block, sort_keys=True).encode()
+    )

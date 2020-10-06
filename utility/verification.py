@@ -25,7 +25,7 @@ class Verification:
             + str(last_hash)
             + str(proof)
         ).encode()
-        guess_hash = has_string_256(guess)
+        guess_hash = hash_string_256(guess)
         return guess_hash[0:3] == "000"
 
     @classmethod
