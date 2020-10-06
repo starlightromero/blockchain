@@ -21,9 +21,11 @@ def get_network_ui():
 @app.route("/wallet", methods=["POST"])
 def create_keys():
     wallet.create_keys()
+    print("{:-^80}".format("Create").upper())
     if wallet.save_keys():
         global blockchain
         blockchain = Blockchain(wallet.public_key, port)
+        print(blockchain)
         response = {
             "public_key": wallet.public_key,
             "private_key": wallet.private_key,
@@ -37,8 +39,14 @@ def create_keys():
 @app.route("/wallet", methods=["GET"])
 def load_keys():
     if wallet.load_keys():
+        print("{:-^80}".format("Load").upper())
         global blockchain
+        print("{:-^80}".format("Public Key").upper())
+        print(wallet.public_key)
+        print("{:-^80}".format("Port").upper())
+        print(port)
         blockchain = Blockchain(wallet.public_key, port)
+        print(blockchain)
         response = {
             "public_key": wallet.public_key,
             "private_key": wallet.private_key,
@@ -253,7 +261,7 @@ def remove_node(node_url):
 def get_node():
     """Get all nodes."""
     nodes = blockchain.get_peer_nodes()
-    response = {"message": nodes}
+    response = {"all_nodes": nodes}
     return jsonify(response), 200
 
 
