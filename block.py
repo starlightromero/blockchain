@@ -1,8 +1,9 @@
 """Import time library."""
 from time import time
+from utility.printable import Printable
 
 
-class Block:
+class Block(Printable):
     """A Block of Blockchain.
 
     Attributes
@@ -28,6 +29,3 @@ class Block:
         self.timestamp = time
         self.transactions = transactions
         self.proof = proof
-
-    def __repr__(self):
-        return str(self.__dict__)

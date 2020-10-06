@@ -1,8 +1,9 @@
 """Import OrderedDict module."""
 from collections import OrderedDict
+from utility.printable import Printable
 
 
-class Transaction:
+class Transaction(Printable):
     """A blockchain transaction.
 
     Arguements
@@ -24,9 +25,6 @@ class Transaction:
         self.receiver = receiver
         self.signature = signature
         self.amount = amount
-
-    def __repr__(self):
-        return str(self.__dict__)
 
     def to_ordered_dict(self):
         """Return transaction as an ordered dictionary."""
