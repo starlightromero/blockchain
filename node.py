@@ -99,7 +99,7 @@ def broadcast_transaction():
                 "sender": values["sender"],
                 "receiver": values["receiver"],
                 "amount": values["amount"],
-                "signature": values["amount"],
+                "signature": values["signature"],
             },
         }
         return jsonify(response), 201
