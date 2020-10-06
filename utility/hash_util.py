@@ -20,7 +20,7 @@ def hash_block(block):
 
     Arguments:
     ---------
-        block
+        block : str
             Block that to be hashed.
 
     """
