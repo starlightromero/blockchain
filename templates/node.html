@@ -89,12 +89,10 @@
   </div>
   <div v-if="!dataLoading" class="blocks">
     <div v-for="(data, index) in loadedData" class="block">
-      <div v-if="view === 'chain'">
+      <div v-if="view === 'chain'" class="chain">
         <button type="button" @click="showElement === index ? showElement = null : showElement = index">
           Block #[[ data.index ]]
         </button>
-      </div>
-      <div v-if="view === 'chain'">
         <p>Previous Hash: [[ data.previous_hash ]]</p>
         <div v-for="tx in data.transactions">
           <div>Sender: [[ tx.sender ]]</div>
@@ -102,12 +100,10 @@
           <div>Amount: [[ tx.amount ]]</div>
         </div>
       </div>
-      <div v-if="view === 'tx'">
+      <div v-if="view === 'tx'" class="tx">
         <button type="button" @click="showElement === index ? showElement = null : showElement = index">
           Transaction #[[ index ]]
         </button>
-      </div>
-      <div v-if="view === 'tx'">
         <div>Sender: [[ data.sender ]]</div>
         <div>Recipient: [[ data.recipient ]]</div>
         <div>Amount: [[ data.amount ]]</div>
