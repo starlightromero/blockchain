@@ -67,19 +67,28 @@ body
           +flexbox(row)
 
       form
-        +flexbox(row)
-        align-items: flex-end
-        margin-bottom: 1rem
+        +flexbox(column)
+        margin: 1rem
+        width: 100%
+
+        label, small, button
+          margin: 1rem
+          width: 100%
 
         label
+          +flexbox(column)
+          align-items: flex-start
 
-        input
-          border: none
-          border-bottom: 2px solid $primary-color
-          background-color: $white
-          font-size: 16px
-          outline: none
-          margin: 0 0.5rem
+          input
+            border: none
+            border-bottom: 2px solid $primary-color
+            background-color: $white
+            font-size: 16px
+            outline: none
+            width: 100%
+
+        small
+          margin-top: 0
 
       button
         +appear(none)

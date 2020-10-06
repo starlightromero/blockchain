@@ -98,18 +98,29 @@ body {
         align-items: center; }
     body #app main form {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      align-items: flex-end;
-      margin-bottom: 1rem; }
-      body #app main form input {
-        border: none;
-        border-bottom: 2px solid #087CB8;
-        background-color: #F5F6F8;
-        font-size: 16px;
-        outline: none;
-        margin: 0 0.5rem; }
+      margin: 1rem;
+      width: 100%; }
+      body #app main form label, body #app main form small, body #app main form button {
+        margin: 1rem;
+        width: 100%; }
+      body #app main form label {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-items: flex-start; }
+        body #app main form label input {
+          border: none;
+          border-bottom: 2px solid #087CB8;
+          background-color: #F5F6F8;
+          font-size: 16px;
+          outline: none;
+          width: 100%; }
+      body #app main form small {
+        margin-top: 0; }
     body #app main button {
       -ms-appearance: none;
       -moz-appearance: none;
