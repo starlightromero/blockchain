@@ -8,12 +8,6 @@
 
 <header>
   <h1>MS Coin</h1>
-  <div v-if="error" class="alert alert-danger" role="alert">
-    [[ error ]]
-  </div>
-  <div v-if="success" class="alert alert-success" role="alert">
-    [[ success ]]
-  </div>
   <nav>
     <ul>
       <li><a href="/">Wallet</a></li>
@@ -22,6 +16,12 @@
   </nav>
 </header>
 <main>
+  <div v-if="error" class="alert alert-danger" role="alert">
+    [[ error ]]
+  </div>
+  <div v-if="success" class="alert alert-success" role="alert">
+    [[ success ]]
+  </div>
   <form @submit.prevent="onAddNode">
     <label>
       Node URL
@@ -29,9 +29,9 @@
     </label>
     <button :disabled="newNodeUrl.trim() === ''" type="submit" class="btn btn-primary">Add</button>
   </form>
-  <button class="btn btn-primary" @click="onLoadNodes">Load Peer Nodes</button>
+  <button @click="onLoadNodes">Load Peer Nodes</button>
   <ul class="list-group">
-    <button v-for="node in nodes" style="cursor: pointer;" class="list-group-item list-group-item-action" @click="onRemoveNode(node)">
+    <button v-for="node in nodes" style="cursor: pointer;" @click="onRemoveNode(node)">
       [[ node ]] (click to delete)
     </button>
   </ul>
