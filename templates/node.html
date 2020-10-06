@@ -50,8 +50,8 @@
   <h2 v-if="!wallet">Create a Wallet to start sending coins or to mine coins!</h2>
   <form v-if="wallet" @submit.prevent="onSendTx">
     <label>
-      Recipient Key
-      <input v-model="outgoingTx.recipient" type="text" id="recipient" placeholder="Enter key">
+      Receiver Key
+      <input v-model="outgoingTx.receiver" type="text" id="receiver" placeholder="Enter key">
     </label>
     <label>
       Amount of Coins
@@ -64,7 +64,7 @@
       <div></div>
       <div></div>
     </div>
-    <button :disabled="txLoading || outgoingTx.recipient.trim() === '' || outgoingTx.amount <= 0" type="submit" class="btn btn-primary">Send</button>
+    <button :disabled="txLoading || outgoingTx.receiver.trim() === '' || outgoingTx.amount <= 0" type="submit">Send</button>
   </form>
   <nav>
     <ul>
@@ -94,9 +94,9 @@
           Block #[[ data.index ]]
         </button>
         <p>Previous Hash: [[ data.previous_hash ]]</p>
-        <div v-for="tx in data.transactions">
-          <div>Sender: [[ tx.sender ]]</div>
-          <div>Recipient: [[ tx.recipient ]]</div>
+        <div v-for="tx in data.transactions" class="tx">
+          <div class="sender">Sender: [[ tx.sender ]]</div>
+          <div class="receiver">Receiver: [[ tx.receiver ]]</div>
           <div>Amount: [[ tx.amount ]]</div>
         </div>
       </div>
@@ -104,8 +104,8 @@
         <button type="button" @click="showElement === index ? showElement = null : showElement = index">
           Transaction #[[ index ]]
         </button>
-        <div>Sender: [[ data.sender ]]</div>
-        <div>Recipient: [[ data.recipient ]]</div>
+        <div class="sender">Sender: [[ data.sender ]]</div>
+        <div class="receiver">Receiver: [[ data.receiver ]]</div>
         <div>Amount: [[ data.amount ]]</div>
       </div>
     </div>

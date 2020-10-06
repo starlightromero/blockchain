@@ -18,7 +18,7 @@ new Vue({
     success: null,
     funds: 0,
     outgoingTx: {
-      recipient: '',
+      receiver: '',
       amount: 0
     }
   },
@@ -82,7 +82,7 @@ new Vue({
       this.txLoading = true
       var vm = this
       axios.post('/transaction', {
-          recipient: this.outgoingTx.recipient,
+          receiver: this.outgoingTx.receiver,
           amount: this.outgoingTx.amount
         })
         .then(function (response) {
