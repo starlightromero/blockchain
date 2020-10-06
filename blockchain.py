@@ -94,7 +94,7 @@ class Blockchain:
                     )
                     updated_transactions.append(updated_transaction)
                 self.__open_transactions = updated_transactions
-                peer_nodes = json.load(file_content[2])
+                peer_nodes = json.loads(file_content[2])
                 self.__peer_nodes = set(peer_nodes)
         except (IOError, IndexError):
             pass
