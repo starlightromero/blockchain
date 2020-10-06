@@ -113,19 +113,16 @@ def broadcast_block():
         if blockchain.add_block(block):
             response = {"message": "Block added."}
             return jsonify(response), 201
-        else:
-            response = {"message": "Block seems invalid."}
-            return jsonify(response), 409
+        response = {"message": "Block seems invalid."}
+        return jsonify(response), 409
     elif block["index"] > blockchain.chain[-1].index:
         response = {
-            "message": """Blockchain is different from local blockchain.
-            Block not added."""
+            "message": "Blockchain is different from local blockchain."
         }
         blockchain.resolve_conflicts = True
         return jsonify(response), 200
-    else:
-        response = {"message": "Blockchain is shorter. Block not added."}
-        return jsonify(response), 409
+    response = {"message": "Blockchain is shorter. Block not added."}
+    return jsonify(response), 409
 
 
 @app.route("/transaction", methods=["POST"])
