@@ -126,6 +126,15 @@ body
       .blocks
 
         .block
+          +flexbox(column)
           border: 1px solid $primary-color
           margin: 1rem
           padding: 1rem
+
+        .chain, .tx
+          +flexbox(column)
+          align-items: flex-start
+          width: 100%
+
+          button
+            align-self: center
