@@ -21,7 +21,7 @@ class Verification:
     def valid_proof(transactions, last_hash, proof):
         """Validate a proof for miners."""
         guess = (
-            str([tx.to_ordered_dict for tx in transactions])
+            str([tx.to_ordered_dict() for tx in transactions])
             + str(last_hash)
             + str(proof)
         ).encode()
