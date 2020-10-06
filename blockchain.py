@@ -122,6 +122,7 @@ class Blockchain:
                 f.write("\n")
                 savable_tx = [tx.__dict__ for tx in self.__open_transactions]
                 f.write(json.dumps(savable_tx))
+                f.write("\n")
                 f.write(json.dumps(list(self.__peer_nodes)))
         except IOError:
             print("{:-^80}".format("Saving failed").upper())
