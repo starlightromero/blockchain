@@ -62,7 +62,18 @@ class Wallet:
         )
 
     def sign_transaction(self, sender, receiver, amount):
-        """Return a signature for a given transaction."""
+        """Return a signature for a given transaction.
+
+        Arguments:
+        ---------
+            sender : str
+                The sender of the transaction.
+            receiver : str
+                The receiver of the transaction.
+            amount : str
+                The amount of the transaction.
+
+        """
         signer = PKCS1_v1_5.new(
             RSA.importKey(binascii.unhexlify(self.private_key))
         )
@@ -74,7 +85,14 @@ class Wallet:
 
     @staticmethod
     def verify_transaction(transaction):
-        """Verify signature of a transaction."""
+        """Verify signature of a transaction.
+
+        Arguments:
+        ---------
+            transaction : str
+                The transaction to be verified.
+
+        """
         public_key = RSA.importKey(binascii.unhexlify(transaction.sender))
         verifier = PKCS1_v1_5.new(public_key)
         h = SHA256.new(

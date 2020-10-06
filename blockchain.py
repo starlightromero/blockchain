@@ -15,7 +15,7 @@ MINING_REWARD = 10
 class Blockchain:
     """Blockchain class manages chain of blocks, open transactions, and node.
 
-    Arguments
+    Arguments:
     ---------
         chain : list
             The list of blocks
