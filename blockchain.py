@@ -273,6 +273,7 @@ class Blockchain:
         return block
 
     def add_block(self, block):
+        """Add a block which was received via broadcasting to the local blockchain."""
         transactions = [
             Transaction(
                 tx["sender"], tx["receiver"], tx["signature"], tx["amount"]
