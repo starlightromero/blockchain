@@ -75,35 +75,6 @@ def get_balance():
         return jsonify(response), 500
 
 
-@app.route("/broadcast_block", methods=["POST"])
-def broadcast_block():
-    values = request.get_json()
-    if not values:
-        response = {"message": "No data found."}
-        return jsonify(response), 400
-    if "block" not in values:
-        response = {"message": "Some data is missing."}
-        return jsonify(response), 400
-    block = values["block"]
-    if block["index"] == blockchain.chain[-1].index + 1:
-        if blockchain.add_block(block):
-            response = {"message": "Block added."}
-            return jsonify(response), 201
-        else:
-            response = {"message": "Block seems invalid."}
-            return jsonify(response), 409
-    elif block["index"] > blockchain.chain[-1].index:
-        response = {
-            "message": """Blockchain is different from local blockchain.
-            Block not added."""
-        }
-        blockchain.resolve_conflicts = True
-        return jsonify(response), 200
-    else:
-        response = {"message": "Blockchain is shorter. Block not added."}
-        return jsonify(response), 409
-
-
 @app.route("/broadcast_transaction", methods=["POST"])
 def broadcast_transaction():
     values = request.get_json()
@@ -134,6 +105,35 @@ def broadcast_transaction():
         return jsonify(response), 201
     response = {"message": "Creating a transaction failed."}
     return jsonify(response), 500
+
+
+@app.route("/broadcast_block", methods=["POST"])
+def broadcast_block():
+    values = request.get_json()
+    if not values:
+        response = {"message": "No data found."}
+        return jsonify(response), 400
+    if "block" not in values:
+        response = {"message": "Some data is missing."}
+        return jsonify(response), 400
+    block = values["block"]
+    if block["index"] == blockchain.chain[-1].index + 1:
+        if blockchain.add_block(block):
+            response = {"message": "Block added."}
+            return jsonify(response), 201
+        else:
+            response = {"message": "Block seems invalid."}
+            return jsonify(response), 409
+    elif block["index"] > blockchain.chain[-1].index:
+        response = {
+            "message": """Blockchain is different from local blockchain.
+            Block not added."""
+        }
+        blockchain.resolve_conflicts = True
+        return jsonify(response), 200
+    else:
+        response = {"message": "Blockchain is shorter. Block not added."}
+        return jsonify(response), 409
 
 
 @app.route("/transaction", methods=["POST"])
@@ -217,10 +217,11 @@ def open_transactions():
 @app.route("/chain", methods=["GET"])
 def get_chain():
     chain = blockchain.chain
-    dict_chain = [
-        [tx.__dict__ for tx in block.__dict__.copy()["transactions"]]
-        for block in chain
-    ]
+    dict_chain = [block.__dict__.copy() for block in chain]
+    for dict_block in dict_chain:
+        dict_block["transactions"] = [
+            tx.__dict__ for tx in dict_block["transactions"]
+        ]
     return jsonify(dict_chain), 200
 
 
