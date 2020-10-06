@@ -39,8 +39,8 @@ class Wallet:
         try:
             with open(f"wallet-{self.node_id}.txt", mode="r") as f:
                 keys = f.readlines()
-                private_key = keys[0][:-1]
-                public_key = keys[1]
+                private_key = keys[1]
+                public_key = keys[0][:-1]
                 self.private_key = private_key
                 self.public_key = public_key
             return True
