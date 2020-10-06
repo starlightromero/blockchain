@@ -15,7 +15,7 @@ class Verification:
             + str(proof)
         ).encode()
         guess_hash = has_string_256(guess)
-        return guess_hash[0:5] == "00000"
+        return guess_hash[0:3] == "000"
 
     @classmethod
     def verify_chain(cls, blockchain):
