@@ -283,7 +283,7 @@ class Blockchain:
         proof_is_valid = Verification.valid_proof(
             transactions[:-1], block["previous_hash"], block["proof"]
         )
-        hashes_match = hash(self.chain[-1]) == block["previous_hash"]
+        hashes_match = hash_block(self.chain[-1]) == block["previous_hash"]
         if not proof_is_valid or not hashes_match:
             return False
         converted_block = Block(
@@ -296,17 +296,17 @@ class Blockchain:
         self.__chain.append(converted_block)
         stored_transactions = self.__open_transactions[:]
         for itx in block["transactions"]:
-            for open_tx in stored_transactions:
+            for opentx in stored_transactions:
                 if (
-                    open_tx.sender == itx["sender"]
-                    and open_tx.receiver == itx["receiver"]
-                    and open_tx.amount == itx["amount"]
-                    and open_tx.signature == itx["signature"]
+                    opentx.sender == itx["sender"]
+                    and opentx.receiver == itx["receiver"]
+                    and opentx.amount == itx["amount"]
+                    and opentx.signature == itx["signature"]
                 ):
                     try:
-                        self.__open_transactions.remove(open_tx)
+                        self.__open_transactions.remove(opentx)
                     except ValueError:
-                        print("Item was already removed.")
+                        print("Item was already removed")
         self.save_data()
         return True
 
