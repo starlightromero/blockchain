@@ -26,12 +26,7 @@ class Transaction:
         self.amount = amount
 
     def __repr__(self):
-        """Return default transaction string."""
-        return str(
-            "\nSender: {}\nReceiver: {:}\nAmount: {:} coins\n".format(
-                self.sender, self.receiver, self.amount
-            )
-        )
+        return str(self.__dict__)
 
     def to_ordered_dict(self):
         """Return transaction as an ordered dictionary."""
