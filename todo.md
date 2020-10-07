@@ -1,6 +1,7 @@
 # TODO
 
 * display and track which nodes have altered blocks
+* Custom exceptions
 * remove/block nodes from chain who alter blocks
 * improve error handling
 * improve scalability
