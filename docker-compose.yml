@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  python:
+    restart: always
+    container_name: python
+    image: index.docker.io/starlightromero/deadcoin-python
+    networks:
+      - deadcoin-network
+
+  nginx:
+    restart: always
+    container_name: nginx
+    image: index.docker.io/starlightromero/deadcoin-nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /root/certs-data/:/data/letsencrypt/
+      - /etc/letsencrypt/:/etc/letsencrypt/
+    networks:
+      - deadcoin-network
+    depends_on:
+      - python
+
+networks:
+  deadcoin-network:
+    driver: bridge
