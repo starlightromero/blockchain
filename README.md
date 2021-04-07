@@ -7,7 +7,7 @@ Reviving the future of currency
 To run the app you will need:
 
 - [Docker](https://docs.docker.com/get-docker/)
-- [docker-compse](https://docs.docker.com/compose/install/)
+- [docker-compose](https://docs.docker.com/compose/install/)
 
 Then run:
 
