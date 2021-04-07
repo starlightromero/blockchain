@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  python:
+    restart: always
+    build:
+      context: ./python
+      dockerfile: Dockerfile.dev
+    container_name: python
+    volumes:
+      - ./python:/app
+    networks:
+      - deadcoin-network
+
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    container_name: nginx
+    ports:
+      - 8080:80
+    networks:
+      - deadcoin-network
+    depends_on:
+      - python
+
+networks:
+  deadcoin-network:
+    driver: bridge
