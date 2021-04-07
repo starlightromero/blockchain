@@ -1,10 +1,8 @@
-{% extends "base.html" %}
-{% block head %}
+{% extends "base.html" %} {% block head %}
 
 <script type="text/javascript" src="/static/vue/network.vue" defer></script>
 
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 
 <header>
   <h1>MS Coin</h1>
@@ -25,13 +23,29 @@
   <form @submit.prevent="onAddNode">
     <label>
       Node URL
-      <input v-model="newNodeUrl" type="text" class="form-control" id="node-url" placeholder="localhost:5001">
+      <input
+        v-model="newNodeUrl"
+        type="text"
+        class="form-control"
+        id="node-url"
+        placeholder="localhost:5001"
+      />
     </label>
-    <button :disabled="newNodeUrl.trim() === ''" type="submit" class="btn btn-primary">Add</button>
+    <button
+      :disabled="newNodeUrl.trim() === ''"
+      type="submit"
+      class="btn btn-primary"
+    >
+      Add
+    </button>
   </form>
   <button @click="onLoadNodes">Load Peer Nodes</button>
   <ul class="list-group">
-    <button v-for="node in nodes" style="cursor: pointer;" @click="onRemoveNode(node)">
+    <button
+      v-for="node in nodes"
+      style="cursor: pointer;"
+      @click="onRemoveNode(node)"
+    >
       [[ node ]] (click to delete)
     </button>
   </ul>
